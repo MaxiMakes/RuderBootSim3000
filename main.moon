@@ -11,6 +11,7 @@ love.load= ->
 
 love.draw= ->
     for i,v in ipairs(waveList)
+        print("main draw")
         v\draw!
     return
 
@@ -20,6 +21,6 @@ love.update= (dt)->
 love.keypressed= (key)->
    if key == "a" then
        --    new: (x, y,gap1=1, gap2=2, size=10, speed=10)=>
-
-      newWave= wave(200, 200, 100, 400, 400)
+      s = math.random(50, 150)
+      newWave= wave(200, 200, 400)
       table.insert(waveList, newWave)

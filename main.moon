@@ -4,11 +4,28 @@ waveList ={}
 
 [[
 
+<<<<<<< HEAD
+=======
+love.load= ->
+    world = love.physics.newWorld( 0, 0, true)
+    return
+
+
+love.draw= ->
+    for i,v in ipairs(waveList)
+        print("main draw")
+        v\draw!
+    return
+
+
+love.update= (dt)->
+    world\update(dt)
+>>>>>>> 792fb09c6a208af33b794b9b0af90faf78a15c2b
 love.keypressed= (key)->
    if key == "a" then
        --    new: (x, y,gap1=1, gap2=2, size=10, speed=10)=>
-
-      newWave= wave(200, 200, 100, 400, 400)
+      s = math.random(50, 150)
+      newWave= wave(200, 200, 400)
       table.insert(waveList, newWave)
 ]]
 Boat = require('boat')
@@ -28,6 +45,7 @@ love.load = ->
 
   w,h = love.window.getDimensions!
   s = 3
+  [[
   for i=1,1000
     b = {}
     b.body = love.physics.newBody(world, math.random(-s*w,s*w), math.random(-s*h,s*h), "dynamic")
@@ -35,21 +53,19 @@ love.load = ->
     b.fixture = love.physics.newFixture(b.body, b.shape, 1)
     b.body\setMass(5)
     table.insert(boxes,b)
+  ]]
 
 love.update = (dt) ->
   boat\update(dt)
   world\update(dt)
   nextspawn += dt
   
-  [[
   if nextspawn > SPAWNTIME
     print("Spawn")
     w,h = love.window.getDimensions!
-    s = math.random(50,150)
-    newWave= wave(math.random(w), math.random(h), s,math.random(s,380), 400)
+    newWave= wave(math.random(w), math.random(h), 400)
     table.insert(waveList, newWave)
     nextspawn = 0
-  ]]
 
 love.draw = ->
 
